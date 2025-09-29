@@ -17,36 +17,22 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: #111111;
             padding: 20px;
             font-family: Arial, sans-serif;
+            font-size: 16px;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
         }
 
-        .header h1 {
-            color: #FF8C00;
-            font-size: 3em;
-            margin: 0;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-            font-weight: bold;
-        }
-
-        .header h2 {
-            color: #ffffff;
-            font-size: 2em;
-            margin: 10px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .subtitle {
-            color: #FF8C00;
-            font-size: 1.5em;
-            margin: 5px 0;
-            font-style: italic;
+        .header img {
+            max-width: 450px;
+            width: 90%;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(20, 20, 20, 0.5));
         }
 
         #spin_the_wheel {
@@ -62,7 +48,7 @@
         }
 
         #spin {
-            font-size: 1.3em;
+            font-size: 18px;
             font-weight: bold;
             user-select: none;
             cursor: pointer;
@@ -76,9 +62,9 @@
             width: 28%;
             height: 28%;
             transform: translate(-50%, -50%);
-            background: #FF8C00;
+            background: #ffffff;
             color: #000000;
-            border: 8px solid #000000;
+            border: 8px solid #1f1f1f;
             border-radius: 50%;
             box-shadow: 0 0 30px rgba(255, 140, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
@@ -92,8 +78,9 @@
         }
 
         #spin.spinning {
-            background: #666;
+            background: #ffffff;
             cursor: not-allowed;
+            font-color: black;
         }
 
         .arrow {
@@ -105,7 +92,7 @@
             height: 0;
             border-left: 25px solid transparent;
             border-right: 25px solid transparent;
-            border-top: 40px solid #FF8C00;
+            border-top: 40px solid #ffffff;
             filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
             z-index: 10;
         }
@@ -122,17 +109,15 @@
         }
 
         .conditions {
-            color: #FF8C00;
+            color: #b96600;
             font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <!-- Título -->
+    <!-- Logo -->
     <div class="header">
-        <h1>MEGA FEIRÃO</h1>
-        <h2>Carros Premium</h2>
-        <p class="subtitle">Serginho Automóveis</p>
+        <img src="feirao3d.png" alt="Logo Mega Feirão">
     </div>
 
     <!-- Roleta -->
@@ -145,14 +130,14 @@
     <script>
         // ===== CONFIGURE SEUS PRÊMIOS AQUI =====
         const sectors = [
-            { color: "#FF8C00", text: "#000000", label: "Desconto 5%" },
-            { color: "#000000", text: "#FF8C00", label: "Brinde Especial" },
-            { color: "#FF8C00", text: "#000000", label: "Test Drive Premium" },
-            { color: "#000000", text: "#FF8C00", label: "Desconto 10%" },
-            { color: "#FF8C00", text: "#000000", label: "Revisão Grátis" },
-            { color: "#000000", text: "#FF8C00", label: "Desconto 15%" },
-            { color: "#FF8C00", text: "#000000", label: "Acessório Grátis" },
-            { color: "#000000", text: "#FF8C00", label: "Desconto 20%" },
+            { color: "#FE7A0B", text: "#FFFFFF", label: "Desconto 5%" },
+            { color: "#1D1D1D", text: "#FFFFFF", label: "Brinde Especial" },
+            { color: "#FE7A0B", text: "#FFFFFF", label: "Test Drive Premium" },
+            { color: "#1D1D1D", text: "#FFFFFF", label: "Revisão Grátis" },
+            { color: "#FE7A0B", text: "#FFFFFF", label: "Desconto 15%" },
+            { color: "#1D1D1D", text: "#FFFFFF", label: "Acessório Grátis" },
+            { color: "#FE7A0B", text: "#FFFFFF", label: "Desconto 20%" },
+            { color: "#1D1D1D", text: "#FFFFFF", label: "Desconto 20%" },
         ];
         // ========================================
 
@@ -198,8 +183,8 @@
             ctx.rotate(ang + arc / 2);
             ctx.textAlign = "right";
             ctx.fillStyle = sector.text;
-            ctx.font = "bold 26px Arial, sans-serif";
-            ctx.fillText(sector.label, rad - 20, 10);
+            ctx.font = "20px Arial, sans-serif";
+            ctx.fillText(sector.label, rad - 50, 10);
 
             ctx.restore();
         }
