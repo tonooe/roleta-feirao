@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mega Feirão - Serginho Automóveis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         * {
             margin: 0;
@@ -17,9 +19,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #111111;
+            background: #0a0a0a;
             padding: 20px;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 16px;
         }
 
@@ -48,7 +50,7 @@
         }
 
         #spin {
-            font-size: 16px;
+            font-size: 12px;
             font-weight: bold;
             user-select: none;
             cursor: pointer;
@@ -62,11 +64,11 @@
             width: 28%;
             height: 28%;
             transform: translate(-50%, -50%);
-            background: #ffffff;
-            color: #000000;
-            border: 8px solid #1f1f1f;
+            background: #0a0a0a;
+            color: #f5f5f5;
+            border: 4px solid #E38800;
             border-radius: 50%;
-            box-shadow: 0 0 30px rgba(255, 140, 0, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 30px #E6B200, inset 0 0 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
             padding: 10px;
             line-height: 1.2;
@@ -74,11 +76,11 @@
 
         #spin:hover {
             transform: translate(-50%, -50%) scale(1.05);
-            box-shadow: 0 0 40px rgba(255, 140, 0, 0.9), inset 0 0 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 40px #E6B200, inset 0 0 20px rgba(0, 0, 0, 0.3);
         }
 
         #spin.spinning {
-            background: #ffffff;
+            background: #0a0a0a;
             cursor: not-allowed;
         }
 
@@ -91,10 +93,19 @@
             height: 0;
             border-left: 20px solid transparent;
             border-right: 20px solid transparent;
-            border-top: 25px solid #ffffff;
+            border-top: 25px solid #E38800;
             filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
             z-index: 10;
         }
+
+        #spin_the_wheel {
+        display: inline-block;
+        position: relative;
+        padding: 2px;
+        border-radius: 50%;
+        background: radial-gradient(circle at center, #d4af377c 0%, #b8870bc9 80%);
+        box-shadow: 0 0 60px #ffbb0034;
+    }
 
         .footer {
             margin-top: 30px;
@@ -108,7 +119,7 @@
         }
 
         .conditions {
-            color: #b96600;
+            color: #E38800;
             font-size: 0.9em;
         }
     </style>
@@ -129,12 +140,12 @@
     <script>
         // ===== CONFIGURE SEUS PRÊMIOS AQUI =====
         const sectors = [
-            { color: "#FE7A0B", text: "#FFFFFF", label: "Intensidade maxima 100 (5 sorteios)" },
-            { color: "#1D1D1D", text: "#FFFFFF", label: "200 Enzo Milano (5 sorteios)" },
-            { color: "#FE7A0B", text: "#FFFFFF", label: "Jantar Seu Cardoso" },
-            { color: "#1D1D1D", text: "#FFFFFF", label: "Vale-almoço Xirus do Jogo" },
-            { color: "#FE7A0B", text: "#FFFFFF", label: "Vale pizza La Bella Donna (5 pizzas grandes tradicional)" },
-            { color: "#1D1D1D", text: "#FFFFFF", label: "Tente outra vez" },
+            { color: "#E6B200", text: "#F5F5F5", label: "Intensidade maxima 100 (5 sorteios)" },
+            { color: "#181818", text: "#F5F5F5", label: "200 Enzo Milano (5 sorteios)" },
+            { color: "#E6B200", text: "#F5F5F5", label: "Jantar Seu Cardoso" },
+            { color: "#181818", text: "#F5F5F5", label: "Vale-almoço Xirus do Jogo" },
+            { color: "#E6B200", text: "#F5F5F5", label: "Vale pizza La Bella Donna (5 pizzas grandes tradicional)" },
+            { color: "#181818", text: "#F5F5F5", label: "Tente outra vez" },
         ];
         // ========================================
 
@@ -169,7 +180,7 @@
 
             // Linhas divisórias
             ctx.beginPath();
-            ctx.strokeStyle = sector.color === "#FF8C00" ? "#000000" : "#FF8C00";
+            ctx.strokeStyle = sector.color === "#181818" ? "#181818" : "#181818";
             ctx.lineWidth = 4;
             ctx.moveTo(rad, rad);
             ctx.lineTo(rad + rad * Math.cos(ang), rad + rad * Math.sin(ang));
@@ -180,7 +191,7 @@
             ctx.rotate(ang + arc / 2);
             ctx.textAlign = "right";
             ctx.fillStyle = sector.text;
-            ctx.font = "14px Arial, sans-serif";  // fonte menor
+            ctx.font = "13px Poppins, sans-serif";  // fonte menor
             
             // Quebra texto em 2 linhas se tiver mais de 18 caracteres
             if (sector.label.length > 18) {
