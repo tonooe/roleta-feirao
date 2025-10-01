@@ -29,7 +29,7 @@
         }
 
         .header img {
-            max-width: 450px;
+            max-width: 350px;
             width: 90%;
             height: auto;
             filter: drop-shadow(0 4px 8px rgba(20, 20, 20, 0.5));
@@ -48,7 +48,7 @@
         }
 
         #spin {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             user-select: none;
             cursor: pointer;
@@ -80,19 +80,18 @@
         #spin.spinning {
             background: #ffffff;
             cursor: not-allowed;
-            font-color: black;
         }
 
         .arrow {
             position: absolute;
-            top: -20px;
+            top: -8px;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-top: 40px solid #ffffff;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 25px solid #ffffff;
             filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.5));
             z-index: 10;
         }
@@ -122,7 +121,7 @@
 
     <!-- Roleta -->
     <div id="spin_the_wheel">
-        <canvas id="wheel" width="700" height="700"></canvas>
+        <canvas id="wheel" width="630" height="630"></canvas>
         <div id="spin">GIRAR</div>
         <div class="arrow"></div>
     </div>
@@ -130,14 +129,12 @@
     <script>
         // ===== CONFIGURE SEUS PRÊMIOS AQUI =====
         const sectors = [
-            { color: "#FE7A0B", text: "#FFFFFF", label: "Desconto 5%" },
-            { color: "#1D1D1D", text: "#FFFFFF", label: "Brinde Especial" },
-            { color: "#FE7A0B", text: "#FFFFFF", label: "Test Drive Premium" },
-            { color: "#1D1D1D", text: "#FFFFFF", label: "Revisão Grátis" },
-            { color: "#FE7A0B", text: "#FFFFFF", label: "Desconto 15%" },
-            { color: "#1D1D1D", text: "#FFFFFF", label: "Acessório Grátis" },
-            { color: "#FE7A0B", text: "#FFFFFF", label: "Desconto 20%" },
-            { color: "#1D1D1D", text: "#FFFFFF", label: "Desconto 20%" },
+            { color: "#FE7A0B", text: "#FFFFFF", label: "Intensidade maxima 100 (5 sorteios)" },
+            { color: "#1D1D1D", text: "#FFFFFF", label: "200 Enzo Milano (5 sorteios)" },
+            { color: "#FE7A0B", text: "#FFFFFF", label: "Jantar Seu Cardoso" },
+            { color: "#1D1D1D", text: "#FFFFFF", label: "Vale-almoço Xirus do Jogo" },
+            { color: "#FE7A0B", text: "#FFFFFF", label: "Vale pizza La Bella Donna (5 pizzas grandes tradicional)" },
+            { color: "#1D1D1D", text: "#FFFFFF", label: "Tente outra vez" },
         ];
         // ========================================
 
@@ -183,8 +180,19 @@
             ctx.rotate(ang + arc / 2);
             ctx.textAlign = "right";
             ctx.fillStyle = sector.text;
-            ctx.font = "20px Arial, sans-serif";
-            ctx.fillText(sector.label, rad - 50, 10);
+            ctx.font = "14px Arial, sans-serif";  // fonte menor
+            
+            // Quebra texto em 2 linhas se tiver mais de 18 caracteres
+            if (sector.label.length > 18) {
+                const words = sector.label.split(' ');
+                const mid = Math.ceil(words.length / 2);
+                const line1 = words.slice(0, mid).join(' ');
+                const line2 = words.slice(mid).join(' ');
+                ctx.fillText(line1, rad - 40, 0);
+                ctx.fillText(line2, rad - 40, 15);
+            } else {
+                ctx.fillText(sector.label, rad - 40, 8);
+            }
 
             ctx.restore();
         }
