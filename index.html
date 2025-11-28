@@ -269,12 +269,13 @@
 
         // ===== CONFIGURE SEUS PRÊMIOS AQUI =====
         const sectors = [
-            { color: "#750207", text: "#EACE75", label: "Intensidade Máxima Valor Consumível!" },
-            { color: "#214328", text: "#EACE75", label: "R$200 em Enzo Milano" },
-            { color: "#750207", text: "#EACE75", label: "Jantar Seu Cardoso" },
+            { color: "#750207", text: "#EACE75", label: "Perdeu a vez" },
+            { color: "#214328", text: "#EACE75", label: "Vale compras em Enzo Milano (R$200)" },
+            { color: "#750207", text: "#EACE75", label: "Tente outra Vez" },
             { color: "#214328", text: "#EACE75", label: "Vale Almoço Xirus do Fogo" },
-            { color: "#750207", text: "#EACE75", label: "Vale Pizza Tradicional La Bella Dona" },
-            { color: "#214328", text: "#EACE75", label: "Tente outra vez" },
+            { color: "#750207", text: "#EACE75", label: "Vale Pizza La Bella Dona" },
+            { color: "#750207", text: "#EACE75", label: "Tente outra Vez" },
+            { color: "#214328", text: "#EACE75", label: "Vale compras MyB Presentes" },
         ];
         // ========================================
 
@@ -312,13 +313,14 @@
             ctx.fill();
 
             // Linhas divisórias douradas
-            ctx.beginPath();
             const lineGradient = ctx.createLinearGradient(rad, rad, rad + rad * Math.cos(ang), rad + rad * Math.sin(ang));
             lineGradient.addColorStop(0, 'rgba(203, 144, 20, 0.3)');
             lineGradient.addColorStop(0.5, '#CB9014');
             lineGradient.addColorStop(1, '#EACE75');
             ctx.strokeStyle = lineGradient;
-            ctx.lineWidth = 3;
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'butt';
+            ctx.beginPath();
             ctx.moveTo(rad, rad);
             ctx.lineTo(rad + rad * Math.cos(ang), rad + rad * Math.sin(ang));
             ctx.stroke();
