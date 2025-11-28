@@ -16,9 +16,10 @@
         body {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
+            gap: 40px;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a0f0f 50%, #0a0a0a 100%);
             padding: 20px;
             font-family: 'Poppins', sans-serif;
@@ -48,13 +49,12 @@
 
         .header {
             text-align: center;
-            margin-bottom: 10px;
             z-index: 10;
         }
 
         .header img {
-            max-width: 350px;
-            width: 70%;
+            max-width: 280px;
+            width: 100%;
             height: auto;
             filter: drop-shadow(0 8px 16px rgba(203, 144, 20, 0.3));
         }
@@ -78,7 +78,7 @@
             font-weight: 300;
             letter-spacing: 4px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-top: 15px;
         }
 
         #spin_the_wheel {
@@ -97,14 +97,14 @@
 
         #wheel {
             display: block;
-            max-width: 90vw;
-            height: auto;
+            width: 450px;
+            height: 450px;
             border-radius: 50%;
         }
 
         #spin {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 14px;
+            font-size: 12px;
             font-weight: 600;
             user-select: none;
             cursor: pointer;
@@ -201,25 +201,6 @@
             opacity: 0.6;
         }
 
-        .snowflake {
-            position: absolute;
-            color: rgba(234, 206, 117, 0.6);
-            font-size: 20px;
-            animation: fall linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
         .footer {
             margin-top: 30px;
             text-align: center;
@@ -233,18 +214,29 @@
             font-weight: 400;
             letter-spacing: 1px;
         }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            #wheel {
+                width: 320px;
+                height: 320px;
+            }
+
+            .header img {
+                max-width: 200px;
+            }
+
+            .christmas-subtitle {
+                font-size: 0.7em;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Flocos de neve decorativos -->
-    <div id="snowflakes"></div>
-
-    <!-- Header -->
-    <div class="header">
-        <img src="logo-transparente-sem-letras.png" alt="Logo">
-        <p class="christmas-subtitle">Edição Especial de Natal</p>
-    </div>
-
     <!-- Roleta -->
     <div id="spin_the_wheel">
         <canvas id="wheel" width="630" height="630"></canvas>
@@ -252,21 +244,13 @@
         <div class="arrow"></div>
     </div>
 
-    <script>
-        // Criando flocos de neve
-        const snowflakesContainer = document.getElementById('snowflakes');
-        for (let i = 0; i < 20; i++) {
-            const snowflake = document.createElement('div');
-            snowflake.className = 'snowflake';
-            snowflake.textContent = '❄';
-            snowflake.style.left = Math.random() * 100 + '%';
-            snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            snowflake.style.animationDelay = Math.random() * 5 + 's';
-            snowflake.style.opacity = Math.random() * 0.6 + 0.2;
-            snowflake.style.fontSize = (Math.random() * 15 + 10) + 'px';
-            snowflakesContainer.appendChild(snowflake);
-        }
+    <!-- Header -->
+    <div class="header">
+        <img src="logo-transparente-sem-letras.png" alt="Logo">
+        <p class="christmas-subtitle">Edição Especial de Natal</p>
+    </div>
 
+    <script>
         // ===== CONFIGURE SEUS PRÊMIOS AQUI =====
         const sectors = [
             { color: "#750207", text: "#EACE75", label: "Perdeu a vez" },
